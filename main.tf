@@ -20,11 +20,11 @@ data "aws_ami" "amzLinux" {
 
   filter {
     name   = "name"
-    values = ["amzn2-ami-hvm-* -gp2"]
+    values = ["amzn2-ami-hvm-*-gp2"]
   }
 
   filter {
-    name   = "root -device-type"
+    name   = "root-device-type"
     values = ["ebs"]
   }
 
