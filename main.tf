@@ -13,8 +13,34 @@ provider "aws" {
   region  = "us-west-2"
 }
 
+
+data "aws_ami" "amzLinux" {
+  most_recent = true
+  owners      = [" amazon"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-* -gp2"]
+  }
+
+  filter {
+    name   = "root -device-type"
+    values = ["ebs"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+}
+
 resource "aws_instance" "app_server" {
-  ami           = "ami-830c94e3"
+  ami           = data.aws_ami.amzLinux.id
   instance_type = "t2.micro"
 
   tags = {
