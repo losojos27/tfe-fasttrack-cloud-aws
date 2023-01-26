@@ -42,8 +42,8 @@ data "aws_ami" "amzLinux" {
 resource "aws_instance" "app_server" {
   ami           = data.aws_ami.amzLinux.id
   instance_type = "t2.micro"
-  vpc_security_group_ids = 
-  subnet_id              = 
+#  vpc_security_group_ids = 
+#  subnet_id              = 
 
   tags = {
     Name = "ExampleAppServerInstance"
